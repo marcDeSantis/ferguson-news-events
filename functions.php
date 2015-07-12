@@ -1,39 +1,25 @@
 <?php
 
-function learningWordPress_resources() {
-	
-	wp_enqueue_style('style', get_stylesheet_uri());
-	
+require_once( 'wp-less/wp-less.php' );
+// Register Custom Navigation Walker
+require_once('wp-bootstrap-navwalker.php');
+
+
+
+function our_theme_resources() {
+	wp_enqueue_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', array(), false);
+    wp_enqueue_style('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(), false);
+    wp_enqueue_style('googlefont', 'http://fonts.googleapis.com/css?family=Lato|Rokkitt', array(), false);
+    // enqueue a .less style sheet
+    if ( ! is_admin() ) {
+        wp_enqueue_style('our-style', get_stylesheet_directory_uri() . '/style.less');
+    }
+
+    wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js', array('jquery'), false, true);
 }
 
-add_action('wp_enqueue_scripts', 'learningWordPress_resources');
+add_action('wp_enqueue_scripts', 'our_theme_resources');
 
-
-
-// Get top ancestor
-function get_top_ancestor_id() {
-	
-	global $post;
-	
-	if ($post->post_parent) {
-		$ancestors = array_reverse(get_post_ancestors($post->ID));
-		return $ancestors[0];
-		
-	}
-	
-	return $post->ID;
-	
-}
-
-// Does page have children?
-function has_children() {
-	
-	global $post;
-	
-	$pages = get_pages('child_of=' . $post->ID);
-	return count($pages);
-	
-}
 
 // Customize excerpt word count length
 function custom_excerpt_length() {
@@ -43,9 +29,8 @@ function custom_excerpt_length() {
 add_filter('excerpt_length', 'custom_excerpt_length');
 
 
-
 // Theme setup
-function learningWordPress_setup() {
+function our_theme_setup() {
 	
 	// Navigation Menus
 	register_nav_menus(array(
@@ -63,7 +48,7 @@ function learningWordPress_setup() {
 	add_theme_support('post-formats', array('aside', 'gallery', 'link'));
 }
 
-add_action('after_setup_theme', 'learningWordPress_setup');
+add_action('after_setup_theme', 'our_theme_setup');
 
 // Add Widget Areas
 function ourWidgetsInit() {
@@ -77,125 +62,127 @@ function ourWidgetsInit() {
 		'after_title' => '</h2>',
 	));
 	
-	register_sidebar( array(
-		'name' => 'Footer Area 1',
-		'id' => 'footer1',
-		'before_widget' => '<div class="widget-item">',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="widget-title">',
-		'after_title' => '</h2>',
-	));
-	
-	register_sidebar( array(
-		'name' => 'Footer Area 2',
-		'id' => 'footer2',
-		'before_widget' => '<div class="widget-item">',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="widget-title">',
-		'after_title' => '</h2>',
-	));
-	
-	register_sidebar( array(
-		'name' => 'Footer Area 3',
-		'id' => 'footer3',
-		'before_widget' => '<div class="widget-item">',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="widget-title">',
-		'after_title' => '</h2>',
-	));
-	
-	register_sidebar( array(
-		'name' => 'Footer Area 4',
-		'id' => 'footer4',
-		'before_widget' => '<div class="widget-item">',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="widget-title">',
-		'after_title' => '</h2>',
-	));
-	
 }
 
 add_action('widgets_init', 'ourWidgetsInit');
 
 
 // Customize Appearance Options
-function learningWordPress_customize_register( $wp_customize ) {
+function our_visualization_options( $wp_customize ) {
 
-	$wp_customize->add_setting('lwp_link_color', array(
+	$wp_customize->add_setting('our_link_color', array(
 		'default' => '#006ec3',
 		'transport' => 'refresh',
 	));
 
-	$wp_customize->add_setting('lwp_btn_color', array(
+	$wp_customize->add_setting('our_btn_color', array(
 		'default' => '#006ec3',
 		'transport' => 'refresh',
 	));
 
-	$wp_customize->add_setting('lwp_btn_hover_color', array(
+	$wp_customize->add_setting('our_btn_hover_color', array(
 		'default' => '#004C87',
 		'transport' => 'refresh',
 	));
 
-	$wp_customize->add_section('lwp_standard_colors', array(
-		'title' => __('Standard Colors', 'LearningWordPress'),
+	$wp_customize->add_section('our_standard_colors', array(
+		'title' => __('Standard Colors'),
 		'priority' => 30,
 	));
 
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'lwp_link_color_control', array(
-		'label' => __('Link Color', 'LearningWordPress'),
-		'section' => 'lwp_standard_colors',
-		'settings' => 'lwp_link_color',
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'our_link_color_control', array(
+		'label' => __('Link Color'),
+		'section' => 'our_standard_colors',
+		'settings' => 'our_link_color',
 	) ) );
 
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'lwp_btn_color_control', array(
-		'label' => __('Button Color', 'LearningWordPress'),
-		'section' => 'lwp_standard_colors',
-		'settings' => 'lwp_btn_color',
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'our_btn_color_control', array(
+		'label' => __('Button Color'),
+		'section' => 'our_standard_colors',
+		'settings' => 'our_btn_color',
 	) ) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'lwp_btn_hover_color_control', array(
-		'label' => __('Button Hover Color', 'LearningWordPress'),
+		'label' => __('Button Hover Color'),
 		'section' => 'lwp_standard_colors',
-		'settings' => 'lwp_btn_hover_color',
+		'settings' => 'our_btn_hover_color',
 	) ) );
+
+    /*
+     * Images and Icons
+     */
+    $wp_customize->add_section('our_images', array(
+        'title' => __('Images'),
+        'priority' => 31,
+        'description' => 'Modify Images and Icons'
+    ));
+
+
+    $wp_customize->add_setting('our_favicon' , array(
+        'default-image' => 'https://s.w.org/favicon.ico?2',
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'our_favicon_image_control' , array(
+        'label' => __('Choose Favicon Image'),
+        'section' => 'our_images',
+        'settings' => 'our_favicon'
+    )));
+
+    $wp_customize->add_setting('our_icon' , array());
+
+    $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'our_icon_image_control' , array(
+        'label' => __('Choose Icon'),
+        'section' => 'our_images',
+        'settings' => 'our_icon'
+    )));
+
+    $wp_customize->add_setting('our_background' , array());
+
+    $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'our_bkground_image_control' , array(
+        'label' => __('Choose Background Image'),
+        'section' => 'our_images',
+        'settings' => 'our_background'
+    )));
 
 }
 
-add_action('customize_register', 'learningWordPress_customize_register');
+add_action('customize_register', 'our_visualization_options');
 
 
 
 // Output Customize CSS
-function learningWordPress_customize_css() { ?>
+function our_customized_css() { ?>
 
 	<style type="text/css">
 
 		a:link,
 		a:visited {
-			color: <?php echo get_theme_mod('lwp_link_color'); ?>;
+			color: <?php echo get_theme_mod('our_link_color'); ?>;
 		}
-
-		.site-header nav ul li.current-menu-item a:link,
-		.site-header nav ul li.current-menu-item a:visited,
-		.site-header nav ul li.current-page-ancestor a:link,
-		.site-header nav ul li.current-page-ancestor a:visited {
-			background-color: <?php echo get_theme_mod('lwp_link_color'); ?>;
-		}
-
-		.btn-a,
-		.btn-a:link,
-		.btn-a:visited,
-		div.hd-search #searchsubmit {
-			background-color: <?php echo get_theme_mod('lwp_btn_color'); ?>;
-		}
-
-		.btn-a:hover,
-		div.hd-search #searchsubmit:hover {
-			background-color: <?php echo get_theme_mod('lwp_btn_hover_color'); ?>;
-		}
+        
+        <?php
+            if (get_theme_mod('our_background') != $null) { ?>
+        body {
+            background-image: url("<?php echo get_theme_mod('our_background'); ?>");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        <?php
+            }
+        ?>
 
 	</style>
 
 <?php }
 
-add_action('wp_head', 'learningWordPress_customize_css');
+add_action('wp_head', 'our_customized_css');
+
+function our_header_links () { ?>
+    <link rel="shortcut icon" href="<?php echo get_theme_mod('our_favicon'); ?>"/>
+<?php
+}
+
+add_action('wp_head', 'our_header_links');
+
+?>

@@ -5,11 +5,12 @@
         <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('small-thumbnail'); ?></a>
     </div><!-- /post-thumbnail -->
 
-
-
-    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-
-    <p class="post-info"><?php the_time('F j, Y g:i a'); ?> | by <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a> | Posted in
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+        </div>
+        <div class="panel-body">
+             <p class="post-info"><?php the_time('F j, Y g:i a'); ?> | by <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a>
 
         <?php
 
@@ -18,6 +19,8 @@
         $output = '';
 
         if ($categories) {
+
+            $output = '| Posted in ';
 
             foreach ($categories as $category) {
 
@@ -53,5 +56,8 @@
 
         }
     } ?>
+
+        </div>
+    </div>
 
 </article>

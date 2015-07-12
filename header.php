@@ -9,34 +9,65 @@
 
 <body <?php body_class(); ?>>
 
-<div class="container">
-
     <!-- site-header -->
     <header class="site-header">
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-menu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="<?php echo home_url(); ?>"><?php
 
-        <!-- hd-search -->
-        <div class="hd-search">
-            <?php get_search_form(); ?>
-        </div><!-- /hd-search -->
+                        if (get_theme_mod('our_icon') != $null) { ?>
+                            <img alt="Brand" src="<?php echo get_theme_mod('our_icon') ?>" class="hidden-xs hidden-sm">
+                        <?php
+                        } bloginfo('name'); ?></a>
+                </div>
 
-        <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-        <h5><?php bloginfo('description'); ?> <?php if (is_page('portfolio')) { ?>
-                - Thank you for viewing our work
-            <?php }?></h5>
+                <div id="primary-menu" class="navbar-collapse collapse">
+                    <?php
 
+                    $nav_args = array(
+                        'theme_location' => 'primary',
+                        'container' => false,
+                        'menu_class' => 'nav navbar-nav',
+                        'depth'             => 2,
+                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                        'walker'            => new wp_bootstrap_navwalker()
+                    );
 
+                    wp_nav_menu($nav_args);
 
-        <nav class="site-nav">
+                    ?>
 
-            <?php
+                    <ul class="nav navbar-nav navbar-right hidden-xs">
+                        <li><a href="https://twitter.com/OneFerguson" title="Visit us on Twitter"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+                        <li><a href="https://facebook.com/OneFerguson" title="Visit us on Facebook"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+                        <li><a href="<?php echo home_url(); ?>/email-list/" title="Join our Email List" data-toggle="tooltip"><i class="fa fa-envelope fa-lg"></i></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav visible-xs">
+                        <li><a href="https://twitter.com/OneFerguson"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+                        <li><a href="https://facebook.com/OneFerguson"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+                        <li><a href="<?php echo home_url(); ?>/email-list/"><i class="fa fa-envelope"></i> Email List</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
 
-            $args = array(
-                'theme_location' => 'primary'
-            );
-
-            ?>
-
-            <?php wp_nav_menu(  $args ); ?>
+            <div id="search-container" class="hidden-xs hidden-sm">
+                <label><?php bloginfo('description'); ?></label>
+                <div id="search-form">
+                    <?php get_search_form(); ?>
+                </div>
+            </div>
         </nav>
 
     </header><!-- /site-header -->
+
+
+
+    <div class="container">
