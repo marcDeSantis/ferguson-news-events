@@ -8,9 +8,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-        </div>
-        <div class="panel-body">
-             <p class="post-info"><?php the_time('F j, Y g:i a'); ?> | by <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a>
+            <p class="post-info"><?php the_time('F j, Y g:i a'); ?> | by <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a>
 
         <?php
 
@@ -33,8 +31,10 @@
         }
 
         ?>
+            </p>
+            </div>
 
-    </p>
+    <div class="panel-body">
 
 
     <?php if ( is_search() OR is_archive() ) { ?>
