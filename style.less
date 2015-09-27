@@ -5,102 +5,11 @@ Author URI: http://www.oneferguson.com
 Version: 1.0
 */
 
-@background-color: #CCC;
+@background-color: white;
+@highlight_background: steelblue;
+@phone-width: 755px;
 
+@import "styles/wordpress-core.less";
 @import "styles/main.less";
 @import "styles/navigation.less";
-
-
-// Widgets
-.widget-item {
-  float:left;
-  width:100%;
-}
-.widget-item h3.widget-title, .widget-item h1.widget-title {
-  border-bottom:2px solid #f15a23;
-  padding:0 0 10px 0;
-  margin:0 0 20px 0
-}
-.widget-item ul {
-  float:left;
-  width:98%;
-  width:calc(100% - 8px);
-  list-style:none;
-  margin:0 0 0 8px
-}
-.widget-item a {
-  font-size:13px;
-  text-decoration:none
-}
-.widget-item ul li {
-  margin:0 0 10px 0;
-}
-.widget-item ul li.cat-item {
-  float:left;
-  width:100%;
-  padding:0;
-  margin:0;
-}
-.widget-item ul.children{
-  padding-left:20px;
-}
-.widget-item ul li.cat-item  a{
-  padding:0;
-  margin-bottom:10px;
-  float:left;
-}
-.widget-item ul li.cat-item  ul li a{
-  padding:0 0 0 5px;
-}
-.widget-item ul li.cat-item  ul li a:before{
-  content: "\f105";
-  color: #333333;
-  font-family: FontAwesome;
-  margin-right: 6px;
-  font-size: 1em;
-  font-weight: bold;
-}
-.widget-item ul li.current-cat a:before,
-.widget-item ul li.cat-item a:hover:before{
-  color: #ff5d2a;
-}
-.widget_nav_menu a{
-  float:left;
-  padding:0;
-  margin:0 0 10px 0;
-}
-.widget_nav_menu li,
-.widget_nav_menu li ul li{
-  float:left;
-  width:100%;
-  margin:0;
-}
-.widget_nav_menu>div ul>li{
-  width:100%;
-  margin:0;
-}
-.widget_nav_menu>div>ul li>ul{
-  margin-left:20px;
-  width:calc(100% - 15px);
-}
-.widget_nav_menu>div>ul>li ul>li>a{
-  padding-left:5px;
-}
-.widget_nav_menu>div>ul>li ul>li>a:before{
-  content: "\f105";
-  color: #333333;
-  font-family: FontAwesome;
-  margin-right: 6px;
-  font-size: 1em;
-  font-weight: bold;
-}
-.widget_nav_menu>div>ul>li ul>li>a:hover:before,
-.widget_nav_menu>div>ul>li ul>li.current-menu-item>a:hover:before{
-  color: #ff5d2a;
-}
-.widget_nav_menu li.current-menu-item>a{
-  color:#ff5d2a;
-}
-.widget_nav_menu>div>ul>li>ul>li>ul>li>ul{
-  display:none;
-}
+@import "styles/calendar.less";

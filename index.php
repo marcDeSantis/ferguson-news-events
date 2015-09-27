@@ -7,7 +7,6 @@ get_header(); ?>
 
         <!-- main-column -->
         <div class="main-column">
-
             <?php if (have_posts()) :
                 while (have_posts()) : the_post();
 

@@ -45,12 +45,12 @@
 
                     ?>
 
-                    <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <ul class="nav navbar-nav navbar-right social-icon-links">
                         <li><a href="https://twitter.com/OneFerguson" title="Visit us on Twitter"><i class="fa fa-twitter-square fa-lg"></i></a></li>
                         <li><a href="https://facebook.com/OneFerguson" title="Visit us on Facebook"><i class="fa fa-facebook-square fa-lg"></i></a></li>
                         <li><a href="<?php echo home_url(); ?>/email-list/" title="Join our Email List" data-toggle="tooltip"><i class="fa fa-envelope fa-lg"></i></a></li>
                     </ul>
-                    <ul class="nav navbar-nav visible-xs">
+                    <ul class="nav navbar-nav social-text-links">
                         <li><a href="https://twitter.com/OneFerguson"><i class="fa fa-twitter-square"></i> Twitter</a></li>
                         <li><a href="https://facebook.com/OneFerguson"><i class="fa fa-facebook-square"></i> Facebook</a></li>
                         <li><a href="<?php echo home_url(); ?>/email-list/"><i class="fa fa-envelope"></i> Email List</a></li>
@@ -58,7 +58,7 @@
                 </div><!--/.nav-collapse -->
             </div>
 
-            <div id="search-container" class="hidden-xs hidden-sm">
+            <div id="search-container">
                 <label><?php bloginfo('description'); ?></label>
                 <div id="search-form">
                     <?php get_search_form(); ?>

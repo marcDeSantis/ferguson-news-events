@@ -14,7 +14,7 @@ body.logged-in .navbar-fixed-top {
 
 
 .container {
-  background-color: aliceblue;
+  background-color: white;
   padding: 10px;
   width: 90%;
 }
@@ -26,32 +26,48 @@ body.logged-in .navbar-fixed-top {
   margin-bottom: 0px;
 }
 
-.main-column {
-  float: left;
-  width: 65%;
-  padding: 10;
-}
-
-.side-column {
-  float: right;
-  width: 35%;
-  padding: 5px;
-}
-
 .site-footer {
-  background-color: darkblue;
+  background-color: @highlight_background;
   color: white;
+  text-align: center;
+  font-size: 8pt;
+  padding: 9px;
+
+  ul {
+    list-style-type: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  li {
+    display: inline;
+    margin-right: 20px;
+
+    a {
+      color: white;
+    }
+  }
 }
 
-.site-footer ul, p {
-  list-style-type: none;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-}
+.site-content {
+  display: flex;
 
-.site-footer li {
-  display: inline;
-  margin-right: 20px;
+  .main-column {
+    flex: 2;
+  }
+
+  .side-column {
+    flex: 1;
+    margin-left: 60px;
+  }
+
+  @media screen and (max-width: @phone-width) {
+    flex-direction: column-reverse;
+
+    .side-column {
+      margin-left: 0;
+    }
+  }
 }

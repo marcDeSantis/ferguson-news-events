@@ -16,10 +16,11 @@ body.logged-in #search-container {
 }
 
 #search-container {
-  background-color: steelblue;
+  background-color: @highlight_background;
   padding: 5px;
-  .hidden-xs();
-  .hidden-sm();
+  @media screen and (max-width: @phone-width) {
+    display: none;
+  }
 }
 
 #search-container label {
@@ -34,4 +35,18 @@ body.logged-in #search-container {
 
 #search-form #s {
   height: 22px;
+}
+
+.social-text-links {
+  display: none;
+  @media screen and (max-width: @phone-width) {
+    display: block;
+  }
+}
+
+.social-icon-links {
+  display: block;
+  @media screen and (max-width: @phone-width) {
+    display: none;
+  }
 }
