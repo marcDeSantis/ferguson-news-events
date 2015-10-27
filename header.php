@@ -3,7 +3,26 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width">
-    <title><?php bloginfo('name'); ?></title>
+    <title><?php
+        if (function_exists('is_tag') && is_tag()) {
+
+            echo 'Tag Archive for &quot;'.$tag.'&quot; - ';
+
+        } elseif (is_search()) {
+
+            echo 'Search for &quot;'.wp_specialchars($s).'&quot; - ';
+
+        } elseif (!(is_404()) && (is_single()) || (is_page()) || (is_archive())) {
+
+            wp_title('&raquo;', true, right);
+
+        } elseif (is_404()) {
+
+            echo 'Not Found - ';
+
+        }
+        bloginfo('name');
+        ?></title>
     <?php wp_head(); ?>
 </head>
 

@@ -1,6 +1,5 @@
 <?php
 
-require_once( 'wp-less/wp-less.php' );
 // Register Custom Navigation Walker
 require_once('wp-bootstrap-navwalker.php');
 
@@ -12,7 +11,7 @@ function our_theme_resources() {
     wp_enqueue_style('googlefont', 'http://fonts.googleapis.com/css?family=Lato|Rokkitt', array(), false);
     // enqueue a .less style sheet
     if ( ! is_admin() ) {
-        wp_enqueue_style('our-style', get_stylesheet_directory_uri() . '/style.less');
+        wp_enqueue_style('our-style', get_stylesheet_directory_uri() . '/styles/app.css');
     }
 
     wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js', array('jquery'), false, true);
