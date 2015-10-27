@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     });
 
     // ============= // CREATE TASKS ========== //
-    grunt.registerTask('compile', 'less');
+    grunt.registerTask('compile', ['less', 'autoprefixer']);
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
